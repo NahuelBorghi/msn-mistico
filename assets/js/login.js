@@ -1,3 +1,7 @@
+const user = sessionStorage.getItem("username");
+if (user) {
+  window.location.href = "/chat.html";
+}
 document.addEventListener("DOMContentLoaded", function () {
   const loginForm = document.getElementById("login-form");
   loginForm.addEventListener("submit", function (e) {
