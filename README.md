@@ -39,10 +39,15 @@ Sigue estos pasos para instalar y ejecutar el proyecto:
 
 ## Características
    -Chat en tiempo real
+   
    -Almacenamiento en navegador
+   
    -Almacenamiento en servidor
+   
    -Notificaciones con sonido y vibración (solo dispositivos móviles)
+   
    -Sistema de log in y log out
+   
    -Sistema de estado de conexión
    
 ## Contribuciones
