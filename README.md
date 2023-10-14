@@ -1,10 +1,10 @@
 # msn-mistico
 
-Este proyecto tiene como finalidad aprobar una instancia evaluativa final de la materia practicas profecionalizantes 2
-msn-mistico es un proyecto web full-stack con la implementacion de websocket, filesystem, node, express, html, css y 
-javascript vanilla vasado en el estilo del antiguo chat MSN y en esta primer version del proyecto busco crear un sistema
-de chat grupal para varios usuarios en simultaneo en el que se pueda ver su estado de conexion y enviar el clasico 
-zumbido para alertar a los demas usuarios conectados.
+Este proyecto tiene como finalidad aprobar una instancia evaluativa final de la materia prácticas profesionalizadles 2
+msn-mistico es un proyecto web full-stack con la implementación de websocket, filesystem, node, express, html, css y 
+javascript vanilla vasado en el estilo del antiguo chat MSN y en esta primer versión del proyecto busco crear un sistema
+de chat grupal para varios usuarios en simultáneo en el que se pueda ver su estado de conexión y enviar el clásico 
+zumbido para alertar a los demás usuarios conectados.
 
 ## Requisitos previos
 
@@ -43,28 +43,28 @@ Sigue estos pasos para instalar y ejecutar el proyecto:
    -Chat en tiempo real
    -Almacenamiento en navegador
    -Almacenamiento en servidor
-   -Notificaciones con sonido y vibracion (solo dispositivos moviles)
+   -Notificaciones con sonido y vibración (solo dispositivos móviles)
    -Sistema de log in y log out
-   -Sistema de estado de conexion
+   -Sistema de estado de conexión
    
 ## Contribuciones
 Si quieres contribuir a este proyecto, sigue estos pasos:
 
-1.Haz un fork del proyecto
+1. Haz un fork del proyecto
 
-2.Crea una rama para tu función: 
+2. Crea una rama para tu función: 
    ```bash
    git checkout -b mi-nueva-función
    ```
-3.Realiza tus cambios y commitea: 
+3. Realiza tus cambios y commitea: 
    ```bash
    git commit -m 'Agrega una nueva función'
    ```
-4.Sube tus cambios: 
+4. Sube tus cambios: 
    ```bash
    git push origin mi-nueva-función
    ```
-5.Abre un Pull Request
+5. Abre un Pull Request
 
 ## Licencia
 Este proyecto está bajo la Licencia MIT - consulta el archivo [LICENSE](https://github.com/NahuelBorghi/msn-mistico/blob/main/LICENSE) para más detalles.
