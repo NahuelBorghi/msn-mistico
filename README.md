@@ -20,4 +20,40 @@ Sigue estos pasos para instalar y ejecutar el proyecto:
 1. Clona el repositorio:
 
    ```bash
-   git clone https://github.com/tu-usuario/tu-proyecto.git
+   git clone https://github.com/NahuelBorghi/msn-mistico.git
+   ```
+2. Navega al directorio del servidor node:
+   
+   ```bash
+   cd msn-mistico/backend/
+   ```
+3. Instala las dependencias:
+
+   ```bash
+   npm install
+   ```
+4. Inicia el servidor:
+
+   ```bash
+   node server.js
+   ```
+5. Abre tu navegador y ve a http://localhost:3000 para ver la aplicación en funcionamiento.
+
+##Características
+   -Chat en tiempo real
+   -Almacenamiento en navegador
+   -Almacenamiento en servidor
+   -Notificaciones con sonido y vibracion (solo dispositivos moviles)
+   -Sistema de log in y log out
+   -Sistema de estado de conexion
+   
+##Contribuciones
+Si quieres contribuir a este proyecto, sigue estos pasos:
+
+1.Haz un fork del proyecto
+2.Crea una rama para tu función: git checkout -b mi-nueva-función
+3.Realiza tus cambios y commitea: git commit -m 'Agrega una nueva función'
+4.Sube tus cambios: git push origin mi-nueva-función
+5.Abre un Pull Request
+Licencia
+Este proyecto está bajo la Licencia MIT - consulta el archivo [LICENSE](https://github.com/NahuelBorghi/msn-mistico/blob/main/LICENSE) para más detalles.
