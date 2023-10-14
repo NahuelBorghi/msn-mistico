@@ -28,9 +28,19 @@ socket.addEventListener("open", () => {
 });
 
 socket.addEventListener("message", (event) => {
-  console.log(event.data);
   const datos = JSON.parse(event.data);
-  if (datos.message) {
+  if (datos.type == "zumbido") {
+    // Mostrar un mensaje en el chat
+    const contenedor = document.getElementById("chat-container");
+    const zumbidoMessage = document.createElement("div");
+    zumbidoMessage.textContent = `${datos.user} ha enviado un zumbido`;
+    contenedor.appendChild(zumbidoMessage);
+    showAttentionNotification(`¡${datos.user} ha enviado un zumbido!`);
+    // Sacudir la pantalla
+    shakeScreen();
+    // Activar la vibración
+    vibrate();
+  } else if (datos.message) {
     const nuevaPlantilla = createMessageTemplate(datos);
     const contenedor = document.getElementById("chat-container");
     // Marcar mensajes propios como "own-message"
@@ -47,7 +57,34 @@ socket.addEventListener("message", (event) => {
     handleFriendState(datos);
   }
 });
+// zumbido
+function showAttentionNotification(message) {
+  if ("Notification" in window) {
+    Notification.requestPermission().then(function (permission) {
+      if (permission === "granted") {
+        // Crear un elemento de audio para el sonido
+        const audio = new Audio("./assets/audio/vibrateSound.mp3");
+        new Notification(message, { silent: true }); // Opciones para hacer que sea una notificación silenciosa
+        audio.play();
+      }
+    });
+  }
+}
+function shakeScreen() {
+  // Agregar la clase de sacudida a un elemento (puedes usar el body o cualquier otro elemento de tu elección)
+  const body = document.body;
+  body.classList.add("shake");
 
+  // Eliminar la clase de sacudida después de un tiempo
+  setTimeout(() => {
+    body.classList.remove("shake");
+  }, 500);
+}
+function vibrate() {
+  if ("vibrate" in navigator) {
+    navigator.vibrate([800, 100, 800]); // Patron de vibración
+  }
+}
 ///event listeners
 const categoryHeaders = document.querySelectorAll("#contact-list h3");
 categoryHeaders.forEach((header) => {
@@ -56,6 +93,15 @@ categoryHeaders.forEach((header) => {
 document.getElementById("send-button").addEventListener("click", (event) => {
   event.preventDefault();
   sendMessage();
+});
+document.getElementById("zumbido").addEventListener("click", (event) => {
+  event.preventDefault();
+  const data = {
+    type: "zumbido",
+    user: user,
+    date: new Date().toISOString(),
+  };
+  socket.send(JSON.stringify(data));
 });
 document.getElementById("message").addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
@@ -76,10 +122,21 @@ function sendMessage() {
   const message = document.getElementById("message").value;
   if (message.trim() !== "") {
     document.getElementById("message").value = "";
+    const fecha = new Date();
+
+    const formatter = new Intl.DateTimeFormat("es", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    const fechaFormateada = formatter.format(fecha);
     const data = {
       message: message,
       user: user,
-      date: new Date().toISOString(),
+      date: fechaFormateada,
     };
     socket.send(JSON.stringify(data));
   }
@@ -100,14 +157,14 @@ function saveMessages() {
     const userText = userElement.textContent.replace(" dice:", "").trim();
     const messageText =
       messageElement.querySelector(".message-text").textContent;
-    const dateText = messageElement.querySelector(".date").textContent;
-    // Crear un objeto con la información y agregarlo al array
-    const messageObject = {
+    const dateText = messageElement.querySelector(".date").textContent; // Convierte la fecha en milisegundos
+
+    // Agregar la información al array
+    messages.push({
       user: userText,
       message: messageText,
-      date: dateText,
-    };
-    messages.push(messageObject);
+      date: dateText, // Convertir la fecha en un objeto de fecha
+    });
   }
   // Convertir el array de objetos a una cadena JSON
   const messagesJson = JSON.stringify(messages);
@@ -115,17 +172,13 @@ function saveMessages() {
   localStorage.setItem("chatMessages", messagesJson);
 }
 function createMessageTemplate(data) {
-  const fecha = new Date(data.date);
-  const fechaFormateada = `${fecha.getDate()}/${
-    fecha.getMonth() + 1
-  }/${fecha.getFullYear()} ${fecha.getHours()}:${fecha.getMinutes()}`;
   const nuevaPlantilla = document.createElement("div");
-  nuevaPlantilla.classList.add("message");
+
   nuevaPlantilla.innerHTML = `
     <p class="user">${data.user} dice:</p>
     <p class="message-text">${data.message}</p>
-    <p class="date">${fechaFormateada}</p>
-    `;
+    <p class="date">${data.date}</p>
+  `;
   return nuevaPlantilla;
 }
 function loadMessages() {
@@ -169,8 +222,8 @@ function handleFriendState(datos) {
 function createFriendStateElement(datos) {
   const friendElement = document.createElement("li");
   friendElement.innerHTML = `
-        <li>
-            <img src="./assets/imgs/${datos.state}.png" alt="${datos.state}"></img>
+        <li class="friend-element">
+            <img src="./assets/imgs/${datos.state}.svg" alt="${datos.state}" class="mini-avatar"></img>
             <p>${datos.username}</p>
         </li>`;
   return friendElement;

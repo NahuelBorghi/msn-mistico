@@ -109,7 +109,7 @@ main {
   margin: 5px;
   padding: 1%;
   border-radius: 5px;
-  width: 100%;
+  width: 97.2%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -129,7 +129,7 @@ main {
   width: 100%;
   display: flex;
 }
-#chat-input > #message {
+#message {
   width: 100%;
 }
 #chat-input > button {
@@ -137,9 +137,46 @@ main {
 }
 #chat-container > * {
   max-width: 70%;
+  overflow-wrap: break-word;
+  color: black;
 }
 .own-message {
   align-self: flex-end;
-  background-color: var(--chat-one);
+  color: blue !important; /* !important Anula estilos previos y establece el color de texto en azul sin importar que */
   padding: 0 10px;
+}
+/* Agrega este CSS a tu archivo CSS o en una etiqueta <style> en tu HTML */
+.shake {
+  animation: shake 0.5s;
+}
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-6px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(6px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-6px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(6px, 0, 0);
+  }
+}
+.mini-avatar {
+  width: 10%;
+  max-width: 20px;
+  margin: 0 10px;
+}
+.friend-element {
+  display: flex;
+  flex-direction: row;
 }
