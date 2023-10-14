@@ -9,6 +9,11 @@ const wss = new WebSocket.Server({ server });
 
 const PORT = 3000;
 
+
+const connectedUsers = [];
+const disconnectedUsers = [];
+
+// Host de front end
 app.use(express.static("../"));
 
 server.listen(PORT, () => {
@@ -16,49 +21,74 @@ server.listen(PORT, () => {
 });
 
 // WebSocket para mensajes
-wss.on("connection", (ws) => {
+wss.on("connection", handleWebSocketConnection);
+
+function handleWebSocketConnection(ws) {
   console.log("Conexión para mensajes: OK");
   ws.on("message", async (message) => {
     try {
       const data = JSON.parse(message);
       if (data.state) {
-        // Hacer algo específico para el estado recibido
-        console.log(`${data.username} recibido en estado: ${data.state}`);
-        ws.send(message.toString());
+        handleUserConnection(data, ws);
       } else {
-        console.log(`${data}`);
-        // Guardar los mensajes en el archivo de texto
-        await saveMessage(message);
-        console.log(`Mensaje recibido del frontend: ${message}`);
-        // Broadcast del mensaje a todos los clientes (WebSocket)
-        ws.send(message.toString());
+        await handleReceivedMessage(data, message);
       }
     } catch (error) {
       console.error("Error al analizar el mensaje JSON:", error);
     }
   });
-});
 
-async function getMessages() {
-  try {
-    const data = await fs.readFile("chat_messages.txt", "utf8");
-    console.log("Mensajes cargados desde el archivo de texto.");
-    return data.split("\n").filter((message) => message.trim() !== "");
-  } catch (err) {
-    console.error("Error al leer el archivo de texto de mensajes:", err);
-    return [];
-  }
+  // Manejo de desconexiones de usuarios y eliminación del usuario de connectedUsers
+  ws.on("close", () => {
+    handleUserDisconnect(ws);
+  });
 }
 
-async function saveMessage(message) {
-  try {
-    const chatMessages = await getMessages();
-    chatMessages.push(message); // Agrega el nuevo mensaje al arreglo de mensajes
-    const textData = chatMessages.join("\n");
+function handleUserConnection(data, ws) {
+  const { username, state } = data;
+  connectedUsers.push({ username, state, ws });
 
-    await fs.writeFile("chat_messages.txt", textData);
-    console.log("Mensaje guardado en el archivo de texto.");
-  } catch (err) {
-    console.error("Error al guardar los mensajes en el archivo de texto:", err);
+  // Envía a todos los usuarios conectados la lista actualizada de todos los usuarios
+  sendUserListToAll();
+}
+function handleUserDisconnect(ws) {
+  // Elimina al usuario de la lista de usuarios conectados
+  const index = connectedUsers.findIndex((user) => user.ws === ws);
+  if (index !== -1) {
+    const disconnectedUser = connectedUsers.splice(index, 1)[0];
+    console.log(`Usuario desconectado: ${disconnectedUser.username}`);
+
+    // Agrega al usuario desconectado a la lista de usuarios desconectados
+    disconnectedUsers.push({
+      username: disconnectedUser.username,
+      state: "offline",
+    });
+
+    // Envía a todos los usuarios conectados la lista actualizada de usuarios desconectados
+    sendUserListToAll();
   }
+}
+function sendUserListToAll() {
+  // Concatena los usuarios conectados y desconectados
+  const allUsers = [...connectedUsers, ...disconnectedUsers];
+
+  // Filtra duplicados en base al username
+  const uniqueUsers = allUsers.filter(
+    (user, index, self) =>
+      index === self.findIndex((u) => u.username === user.username)
+  );
+
+  // Envía la lista de usuarios a todos los usuarios conectados
+  sendToAllConnectedUsers(JSON.stringify(uniqueUsers));
+}
+function sendToAllConnectedUsers(message) {
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(message);
+    }
+  });
+}
+async function handleReceivedMessage(data, message) {
+  console.log(`Mensaje recibido del frontend: ${message}`);
+  sendToAllConnectedUsers(JSON.stringify(data));
 }

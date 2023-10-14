@@ -1,0 +1,27 @@
+{"message":"peronistaaaaaaaa!","user":"nahue","date":"2023-10-09T11:36:15.271Z"}
+{"message":"peronistaaaaaaaa!","user":"nahue","date":"2023-10-09T11:39:01.749Z"}
+{"message":"peronistaaaaaaaa!","user":"nahue","date":"2023-10-09T11:40:43.659Z"}
+{"message":"1231231","user":"nahue","date":"2023-10-09T11:53:09.842Z"}
+{"message":"31231","user":"nahue","date":"2023-10-09T11:53:11.751Z"}
+{"message":"peronistaaaaaaaa!","user":"nahue","date":"2023-10-09T11:53:14.041Z"}
+{"message":"peronistaaaaaaaa!","user":"nahue","date":"2023-10-09T11:53:34.435Z"}
+{"message":"peronistaaaaaaaa!","user":"nahue","date":"2023-10-09T23:34:10.535Z"}
+{"message":"peronistaaaaaaaa!","user":"nahue","date":"2023-10-10T00:02:52.343Z"}
+{"message":"peronistaaaaaaaa!","user":"nahue","date":"2023-10-10T00:03:47.154Z"}
+{"message":"peronistaaaaaaaa!","user":"nahue","date":"2023-10-10T00:13:38.687Z"}
+{"message":"peronistaaaaaaaa!","user":"nahue","date":"2023-10-10T00:13:45.176Z"}
+{"message":"peronistaaaaaaaa!","user":"nahue","date":"2023-10-10T00:13:48.420Z"}
+{"message":"peronistaaaaaaaa!","user":"nahue","date":"2023-10-10T00:17:28.164Z"}
+{"message":"peronistaaaaaaaa!","user":"nahue","date":"2023-10-10T00:20:04.837Z"}
+{"message":"peronistaaaaaaaa!","user":"nahue","date":"2023-10-10T00:22:10.605Z"}
+{"message":"peronistaaaaaaaa!","user":"nahue","date":"2023-10-10T00:22:13.511Z"}
+{"message":"peronistaaaaaaaa!","user":"nahue","date":"2023-10-10T00:22:15.768Z"}
+{"message":"peronistaaaaaaaa!","user":"nahue","date":"2023-10-10T00:24:15.685Z"}
+{"message":"paparulo","user":"peron","date":"2023-10-10T00:30:48.213Z"}
+{"message":"peronistaaaaaaaa!","user":"nahue","date":"2023-10-10T00:31:19.456Z"}
+{"message":"peronistaaaaaaaa!","user":"nahue","date":"2023-10-10T00:31:20.951Z"}
+{"message":"peronistaaaaaaaa!","user":"nahue","date":"2023-10-10T00:31:24.808Z"}
+{"message":"Holi","user":"Pepe","date":"2023-10-10T10:35:52.157Z"}
+{"message":"Hola","user":"nahue","date":"2023-10-10T10:43:02.799Z"}
+{"message":"vota a milei (?","user":"peron","date":"2023-10-10T10:43:19.640Z"}
+{"username":null,"state":null}

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="./assets/style/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="shortcut icon" href="./assets/imgs/logo.png">
     <link
       href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200;6..12,400;6..12,600;6..12,800&display=swap"
       rel="stylesheet"
@@ -13,21 +14,33 @@
     <title>MSN Messenger</title>
   </head>
   <body>
-    <header>
-      <!-- Aquí cargarás la plantilla del encabezado si es necesario -->
-    </header>
     <main>
-      <div id="app">
-        <!-- Aquí cargarás las plantillas dinámicamente -->
-      </div>
-      <div id="app2">
-        <!-- Aquí cargarás las plantillas dinámicamente -->
+      <div class="frame">
+        <div id="login">
+          <h2>Iniciar Sesión</h2>
+          <img src="./assets/imgs/prueba1.png"></img>
+          <form id="login-form">
+            <label for="username">Nombre de Usuario:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+            <div>
+              <label for="state">Estado:</label>
+              <select id="state" name="state" required>
+                <option value="online"selected>Conectado</option>
+                <option value="offline">Desconectado</option>
+                <option value="busy">Ausente</option>
+              </select>
+            </div>
+            <div>
+              <input type="checkbox" id="remember-me" name="remember-me"/>
+              <label for="remember-me">Rercordarme</label>
+            </div>
+            <button type="submit">Iniciar Sesión</button>
+            </form>
+        </div>
       </div>
     </main>
-    <footer>
-      <!-- Aquí cargarás la plantilla del pie de página si es necesario -->
-    </footer>
   </body>
-  <script src="./assets/js/loader.js"></script>
-  <script src="./assets/js/main.js"></script>
+  <script src="./assets/js/login.js"></script>
 </html>
