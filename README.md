@@ -1,8 +1,8 @@
 # msn-mistico
 
-Este proyecto tiene como finalidad aprobar una instancia evaluativa final de la materia prácticas profesionalizanles 2.
+Este proyecto tiene como finalidad aprobar una instancia evaluativa final de la materia prácticas profesionalizantes 2.
 
-msn-mistico es un proyecto web full-stack con la implementación de websocket, filesystem, node, express, html, css y javascript vanilla vasado en el estilo del antiguo chat MSN y en esta primer versión del proyecto busco crear un sistema de chat grupal para varios usuarios en simultáneo en el que se pueda ver su estado de conexión y enviar el clásico zumbido para alertar a los demás usuarios conectados.
+msn-místico es un proyecto web full-stack con la implementación de websocket, filesystem, node, express, html, css y javascript vanilla basado en el estilo del antiguo chat MSN y en esta primer versión del proyecto buscó crear un sistema de chat grupal para varios usuarios en simultáneo en el que se pueda ver su estado de conexión y enviar el clásico zumbido para alertar a los demás usuarios conectados.
 
 ## Requisitos previos
 
